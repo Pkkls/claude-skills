@@ -1,0 +1,51 @@
+You are continuing stewardship of https://github.com/Pkkls/autonomy-log, local checkout `C:\Users\<user>\Downloads\02 - Projects\autonomy-log`. It is a public, self-verifying record of what breaks when coding agents get real access to real systems, written as a thesis: every claim derived, every count with its unit and its command, every finding with the tilts that bias it. Your job this session is the one commitment the record has left open, and it is harder than writing entries: score the pre-registration in RESEARCH.md section 6i against its window, under the heading Verdict, without editing a word above that heading.
+
+Read before touching anything, in this order, completely:
+1. AGENTS.md. It binds: SCHEMA, PRECEDENCE, ASSERTED (AST-01 to AST-23), INVARIANTS, OPEN, LOOP.
+2. RESEARCH.md section 6i, all of it: the window, the Known-before-measuring list, the Terms, W1 to W25 with their REFUTED IF and MEASURED BY columns, the struck predictions, the bias declaration.
+3. LEDGER.md entries E84 to E94 and D18, D19, and the Counting and Citations sections.
+4. WHAT-CHANGED.md, last two sections.
+
+State of the record when this brief was written (re-derive every number, never trust these):
+- As of 2026-10-10 evening: HEAD `c65cfb0`, verifier exit 0, 12 invariants. Numbered E maximum E94, D maximum D19, DRV-02 = 94, DRV-03 = 19, README line 19 counts headings (96 agent entries, 27 discoveries).
+- LEDGER.md has an Index section (INV-12): every new entry needs one row with SUBJECT, LAYER, DETECTOR, CONSEQUENTIAL, OUTBOUND, INSTRUMENT, QUIET from a fixed vocabulary. Most W predictions are counts over exactly these fields: put every admitted window event in the Index and score W1 to W10 by counting rows, not by rereading prose. Older entries may get rows when a measurement needs them; say so in the commit.
+- AST-24: an entry whose SUBJECT is `record` needs a `**Beyond this record:**` line. INV-12 enforces it.
+- Push with `sh ~/.claude/skills/autonomy-log/ship.sh` after each commit, never with a hand-chained `git push`.
+- E87 to E94, D19 and the 2026-10-10 WHAT-CHANGED section were written by the previous session. E88 is that session's own error: it pushed a red tree because the push was chained after `echo EXIT=$?`. Do not repeat it. Push only from a step gated on the verifier's own exit code: push when it exits 2, require 0 after the push, refuse otherwise. Witness that gate red on a dirty tree before trusting it (L7).
+
+The window, and the trap in it:
+- 6i bounds its window from `3780771` (2026-09-01T14:03:45+02:00) to the push receipt of the pre-registration, which is `b18dc92`, 2026-09-25 around 20:19+02:00. Re-derive that receipt from git and from the CI run, and state it in the Verdict before scoring anything.
+- Most of E87 to E94 happened on or after 2026-09-26, so they are OUTSIDE the scored window. They may not be counted as window events. Some ledger entries measure across both sides (E91's 458 queued messages, the 23 quote-parse failures in WHAT-CHANGED): split every such count at the receipt, by timestamp, and score only the inside part.
+- Window events are E or D events introduced, active or detected inside the window. Most of them have never been written up. Expect to find the window's events in transcripts, commits and the estate itself, not in the ledger.
+- The span from the receipt to today is no longer unseen: the previous session read much of it. Do not pre-register predictions about it. A prediction written after reading is not a prediction.
+
+How to score:
+- One W per round, or a small group sharing one measurement, one commit per round, per LOOP. The Verdict is a table: ID, MEASURED (number with its unit and denominator), COMMAND or source, OUTCOME (held, refuted, untestable with why), and the tilts that apply to that measurement and their direction (AST-19). An untestable prediction is reported as untestable with the reason; it is never rounded to held.
+- W25 is scored and excluded from the verdict, as 6i says.
+- Every window event you admit gets a layer (L0 to L6, RESEARCH section 2), a detector, a consequential yes or no, outbound yes or no, instrument yes or no, indistinguishable yes or no, and earliest-defect and first-detection timestamps. Keep that table locally, outside the repository. Publish only the counts and the mechanisms.
+- W1 and W2 ask for review "by an oracle that did not write it". A subagent you brief is not independent of you (6f, shared instruction set). Say so in the score instead of claiming independence you do not have; if you use a reviewer, give it the event table and not your conclusions, and record where it disagreed.
+- W11 to W14 grade the reloaded layer: the global instructions and their includes, every memory directory, settings, hooks, scheduled task definitions, and since September the skills directory. Resolve each checkable claim with a command. For the end-of-window state, use file versions as of the receipt where history allows (git history of the skills repository, file modification times, backups), and say which claims could only be checked as of today.
+- W19 and W20 touch the 128 MB board. Read-only only. Estimate each probe's cost before sending it, read the one-minute load average before and after, log both, and stop if any probe raises it by more than 1.0. Anything that would change the board is a proposal to the operator, never an action (PRC-0, LOOP proposed writeback).
+- W22 needs expected runs per scheduled job (cadence times window length) against dated run artifacts. A job writing identical output every run counts against the prediction even if every run happened.
+- W23 compares project roots active in the window against the list fixed by SHA-256 in 6i. That list is held outside the repository; if you cannot find a file matching the digest, W23 is untestable and you say so. Do not reconstruct the list and claim it matches.
+
+Where the material is, and the traps already paid for:
+- Transcripts: `C:\Users\<user>\.claude\projects\`. Never in the repository (AST-18). Process them in a sandboxed executor and print only what you select.
+- The incident extractor (`node "C:\Users\<user>\Downloads\02 - Projects\claude-skills\skills\learn-from-errors\incidents.mjs" --since 2026-09-01 --dry`) emits one line per tool error, denial and correction. Its correction text is in the field `said`. It does NOT read operator messages typed mid-turn: those are stored as attachments of type `queued_command` (E91). Read both channels, or every count of operator corrections is a lower bound and must say so.
+- Several timestamps in transcripts are UTC, commit dates carry +02:00. Convert before comparing.
+- Git Bash rewrites paths in `git show rev:path`: use `MSYS_NO_PATHCONV=1`. GitHub `blob/` pages answer 503 to unauthenticated programs (D19): use the API or raw addresses.
+- Shell commands with apostrophes inside single quotes fail to parse: write files with the Write tool, not heredocs, when the text contains French.
+- E86: an instrument you or a subagent writes is not trusted until it agrees with a second channel on the real data, not only on a fixture derived from its own constants.
+
+Exposure rules, stricter than usual because this pass reads the whole estate:
+- Private work (a 24/7 rebroadcast system, a multi-channel product, the skills repository, other private repositories, the board, the camera board) is recorded only as mechanism: no repository name, channel name, account, machine, address, path or person (AST-03, PRC-1). Check visibility with `gh repo view <owner>/<name> --json visibility` before naming any repository; memory is not evidence of visibility (E83).
+- Evidence that exists only in transcripts or local files is testimony, published marked as such (AST-05), or not at all.
+
+Voice:
+- English, plain prose, no em dashes, no hollow openings, no robotic connectors (AST-04). Declarative titles. Every count carries its unit and the denominator you counted, not the one an instrument returned (L5). Where the verdict goes against the thesis, write it as plainly as where it holds: a refuted prediction is the most valuable line this section can contain.
+- New ledger entries for window events follow AST-13 (`### E<n>. <declarative title>`, bolded severity clause, mechanism, `Caught by:`, `Fix:`, `Class:` citing entries by id), are allocated by counting the maximum then re-verified (AST-14), and update DRV-02 or DRV-03 and README line 19 in the same commit. Every cited hash gets a row in the Citations table (INV-11). Corrections of earlier entries use bidirectional supersession (INV-10).
+- A pattern across events goes to RESEARCH.md only when measured. The Verdict's closing paragraph says which sections of the thesis the window supports, which it refutes, and which it could not test, and nothing beyond what the table shows.
+
+Hard rules: `git add` with named files only (AST-12). Pushing to main is authorized; force-push and history rewriting are forbidden (AST-02). Report success only after the push lands and `python check_agents.py` exits 0 (L8). Stop and hand back on any irreversible decision (PRC-0).
+
+When you stop, report: rounds run, each W with its outcome, window events admitted with their ids, predictions left untestable and why, entries added, invariants status, final commit hash, and what you measured only as of today rather than as of the receipt.

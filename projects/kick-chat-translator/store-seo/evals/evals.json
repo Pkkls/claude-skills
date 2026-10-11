@@ -1,0 +1,23 @@
+{
+  "skill_name": "store-seo",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "audite la fiche chrome en japonais et dis moi quoi changer, textes exacts",
+      "expected_output": "An audit following the template: a score out of 55 or per-language out of 5, quick wins with exact Japanese text and character counts against the 45/132 limits, each tied to a query from store/keywords.json or a rank.mjs measurement, no superlatives, no promised rank.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "on en est ou sur les classements des stores cette semaine ? par langue",
+      "expected_output": "Runs node scripts/stores/rank.mjs, reports positions per language and query with the top-10 (Chrome) and top-50 (AMO) caveat, user counts, and compares with the 2026-09-26 baseline in the skill.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "refais les captures d'ecran du store en coreen et en turc, je veux les uploader",
+      "expected_output": "Runs test/e2e/store-shots-fixture.mjs --lang=ko and --lang=tr (never store-shots.mjs), checks 5/5 per language, looks at the images, and gives the absolute folder paths test/e2e/store-fixture/ko and /tr.",
+      "files": []
+    }
+  ]
+}
