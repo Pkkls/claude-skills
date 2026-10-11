@@ -15,13 +15,14 @@ English, thesis voice, in the repo. French with kil in chat.
 2. `git fetch && git status`, then `python check_agents.py` (0 ok, 2 unpublished, 1 stop).
 3. Open work: record anything new since the last entry. The 6i verdict was scored on
    2026-10-10 and finished 2026-10-11 (20 held, 5 refuted: W5, W6, W15, and W11/W12
-   once the memory prose was resolved, 83/461 false, 66/83 present); its event table is
+   once the memory prose was resolved, 93/499 false, 71/93 present); its event table is
    `window-events-6i.json` here, kept out of autonomy-log because it names private work.
    Pkkls/claude-skills is PUBLIC since 2026-10-11: `sync.ps1` drops this table and
    `w1-review-6i.md`, replaces local values through `private.map` (never committed) and
    refuses to push if one remains. Its old history is Pkkls/claude-skills-private.
-   `verdict-brief.txt` is history now. 99 memory claims stay unresolved, 60 of them need
-   Oracle; W11 flips back only if 29 of 99 are false. The external read of the README is
+   `verdict-brief.txt` is history now. 60 memory claims stay unresolved (devices not
+   plugged, Telegram server side, changes with no date); W11 flips back only if 19 of 60
+   are false. Claim table and verdicts: scratchpad of session 21699698 (res-all.jsonl). The external read of the README is
    assigned to kil (task).
 
 ## Rules paid for (each one cost an entry)
@@ -50,6 +51,14 @@ English, thesis voice, in the repo. French with kil in chat.
   (E88 twice, then E99).
 - The board: `MSYS_NO_PATHCONV=1 wsl ssh -i /home/<user>/.ssh/nano_key ...`; estimate each
   probe, read /proc/loadavg before and after, and say so if one went out without.
+- Every remote probe, ANY host (boards, `ssh oracle`, others), carries a written estimate
+  of what each command reads. No unbounded recursive read (the cloud host's v2 dir is
+  video, E101). Wrap the remote script in the far side's own `timeout 60`: a local
+  timeout leaves the remote command running. Filter `crontab -l` and env files
+  (`grep -v -iE 'token|key|secret'`) before they reach disk.
+- An irreversible step (publish, visibility, store submit) runs alone, in its own
+  command, after the checks' output has been read. `&&` after a check that prints a
+  count gates on nothing (E102, third time after E88 and E99).
 - Memory is per working directory, 13 islands (D20). Rules that must bind everywhere go
   in this skill or the global instructions, not in one island.
 - "Read-only" in a delegated prompt does not bind (E100): a resolver ran a writing
