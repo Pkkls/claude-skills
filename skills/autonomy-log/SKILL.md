@@ -17,8 +17,9 @@ English, thesis voice, in the repo. French with kil in chat.
    2026-10-10 and finished 2026-10-11 (20 held, 5 refuted: W5, W6, W15, and W11/W12
    once the memory prose was resolved, 83/461 false, 66/83 present); its event table is
    `window-events-6i.json` here, kept out of autonomy-log because it names private work.
-   `sync.ps1` copies this whole directory to Pkkls/claude-skills (private, checked
-   2026-10-11), so the table lives there too: move it out before that repo goes public.
+   Pkkls/claude-skills is PUBLIC since 2026-10-11: `sync.ps1` drops this table and
+   `w1-review-6i.md`, replaces local values through `private.map` (never committed) and
+   refuses to push if one remains. Its old history is Pkkls/claude-skills-private.
    `verdict-brief.txt` is history now. 99 memory claims stay unresolved, 60 of them need
    Oracle; W11 flips back only if 29 of 99 are false. The external read of the README is
    assigned to kil (task).
