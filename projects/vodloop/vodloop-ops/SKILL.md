@@ -32,6 +32,13 @@ Live since 2026-10-12: `cx247vods` (user_id 127469285, root
 good: Nanatty was banned on Kick, and Kick forbids showing a banned person on
 another stream. First run took ~2 h to live, ~2.5 h to the first VOD on air.
 
+**Since 2026-10-12 this is one command:** `python tools/switch.py <new> --user-id
+<id> --key-file <f> --sources <f> --banned <f>` (dry run; `--apply` executes,
+`tests/test_switch.py` checks it). The live channel is `ops/live-channel`, read by
+every tool: never name a channel in a tool again. Exercise checklist, timings
+and the error log: `ops/pra.txt`. The steps below are what switch.py does, and
+what it leaves to kil (PC `part/`, bot authorize, channel points, purge).
+
 Names below: `<old>` the channel being retired, `<new>` its Kick slug (also
 the root dir name and the systemd instance), `<id>` its Kick user_id.
 
