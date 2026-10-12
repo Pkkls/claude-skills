@@ -79,18 +79,19 @@ No API sets the listing and no extension may act on the dashboard. `scripts/stor
 & "C:\Program Files\BraveSoftware\Brave-Browser\Applicationrave.exe" --remote-debugging-port=9222 --user-data-dir="$env:USERPROFILE\.config\kick-chat-translator\cws-browser" --no-first-run <listing URL>
 ```
 
-The user signs in by hand, once; the profile stays signed in. Launching that browser is the user's step: the permission classifier refused it from here. The user added the allow rule `Bash(node scripts/stores/cws-listing.mjs:*)`; run the script exactly as `node scripts/stores/cws-listing.mjs <cmd>` from the repository root, never prefixed with `cd`, or the rule does not match and the call is refused.
+**Start it yourself, whenever needed: `node scripts/stores/cws-listing.mjs launch`.** kil authorized it on 2026-10-12 and set it to allow: do not ask first, do not hand them a command. Run it whenever port 9222 does not answer (`ECONNREFUSED 127.0.0.1:9222`). Signing in stays the user's step: the profile is signed in and stays so; if Google asks for a sign-in, stop and ask. The user added the allow rule `Bash(node scripts/stores/cws-listing.mjs:*)`; run the script exactly as `node scripts/stores/cws-listing.mjs <cmd>` from the repository root, never prefixed with `cd`, or the rule does not match and the call is refused.
 
 | command | what | status |
 |---|---|---|
 | `inspect [tab]` | read-only survey of a tab (`edit`, `edit/privacy`) | works |
 | `links` | the dashboard's own tab URLs, so none is guessed | works |
-| `paste [--dry]` | every `store/chrome/description/<lang>.txt`, read back, saved | works: 11/11 on 3.0.2 |
-| `verify` | reload, compare what Chrome kept with the files | works: 11/11 identical |
+| `paste [--dry]` | every `store/chrome/description/<lang>.txt`, read back, saved; `CWS_LANGS=he,hi` limits it, `CWS_DEBUG=1` prints the picker's options and the first difference of a failed read-back | works: 42/42 on 3.1.0. Refuses to run while a submission is in review |
+| `verify` | reload, compare what Chrome kept with the files. Always run it after `paste` | works: 42/42 identical on 3.1.0 |
 | `why` | reads the "why can't I submit" panel the API never explains | works |
+| `status` | the "État" tab's words and whether "Envoyer pour examen" is still live. Run it after every submission: the API's PENDING_REVIEW is not proof | works: "en attente d'examen", button greyed out, on 3.2.0 |
 | `justify [--dry|--nosave]` | Privacy tab justifications from `permission-justifications.txt` | fields write correctly (a hand click on Save kept exactly what it typed); the save now waits for the dashboard to confirm and falls back to a DOM click. **Not yet seen saving on its own**: check with `why` the first time |\|--nosave]` | Privacy tab justifications from `permission-justifications.txt` | **fields write, save does not persist** (0/4 twice): finish by hand, then `why` |
 
-Languages are matched by the code after the dash in the picker ("anglais – en"), and the dashboard writes `pt-BR` and `zh-CN` with a hyphen. A tab left in the background takes no synthetic click: the script brings it to front first.
+Languages are matched by the code after the dash in the picker ("anglais – en"), and the dashboard writes `pt-BR`, `pt-PT`, `zh-CN` and `zh-TW` with a hyphen, and Hebrew as `iw` (`cws: 'iw'` in `languages.mjs`). A tab left in the background takes no synthetic click: the script brings it to front first.
 
 ## 2. AMO: through the API
 
@@ -220,3 +221,27 @@ Kept so the next release starts from what happened, not from what was assumed.
 - **Before any submission, check the draft holds nothing else:** Package tab, draft version equals published version; default-language description equals the public page.
 - **Store screenshots harness and Google batches.** `test/e2e/store-shots-fixture.mjs` answers the engine from the GET `q` parameter only. Since PR #26 a batch goes out as `POST translate_a/t` with one `q` field per line and expects `[[translation, lang], ...]`. Not re-run on the fixture yet; a capture script that handled both (motion-studio `scripts/capture.mjs`) translated all 24 lines. Run the fixture and check the chat shot before the next release.
 - **The e2e Playwright wrapper needs `UX_KIT`** (`C:/Users/<user>/.claude/ux-ui-agent-skills` holds `node_modules/playwright`); without it every e2e script stops at "Playwright introuvable".
+
+## Journal: 3.1.0, 2026-10-12
+
+- **42 listing languages.** The list lives in `scripts/stores/languages.mjs`; payloads, verify, rank and cws-listing read it. New Chrome languages appear in the dashboard's picker only once a package carrying their `_locales` is uploaded, so their descriptions are pasted after the tag, then `cws.mjs cancel` and `publish` to resubmit.
+- **AMO "0/34 relues identiques" was a false alarm, again.** Version, source, notes and listing were all stored. AMO renders the "1." step lines as an `<ol>` (numbers and line breaks gone once tags are stripped) and drops Persian's zero-width non-joiner. The readback in `amo.mjs` and `verify.mjs` now sets numbering, ZWNJ and whitespace aside. Before rerunning AMO after a red step, read the step's log: a `POST .../versions/ -> 201` means the version exists and a rerun would be refused.
+- **Pasted into a draft in review: 0/42.** Chrome was PENDING_REVIEW after the tag, and a draft in review is frozen: every field types, nothing sticks. The dashboard's "État" tab said so ("Ce brouillon est en attente d'examen") and I did not read it before pasting; kil had to point it out. Now `paste` asks the API first and stops on a review.
+- **The page check took `/edit/status` for `/edit`** (a prefix test), so `paste` did not navigate and found nothing. Now an exact URL match.
+- **Text typed into the previous language.** The picker sometimes switches late: Hindi landed in the Hebrew listing and Japanese in the Italian one while `paste` said done. Only `verify` caught it. Now `chooseLanguage` waits until the picker shows the language; its text ends with the Material icon ligature ("– ararrow_drop_down"), stripped before matching, or every language reads "not offered". Always `verify` after `paste`.
+- **Hebrew is `iw` in the dashboard**, not `he`. bn once failed to be picked and passed alone on a retry.
+- **`cws.mjs publish` is not enough after a listing change.** The API answered PENDING_REVIEW, but the dashboard still offered "Envoyer pour examen" for the edited listing, and kil clicked it. After pasting: `cws.mjs cancel` before, then `paste`, `verify`, and "Envoyer pour examen" in the dashboard (check the "État" tab says "en attente d'examen" afterwards).
+- **The debug browser is mine to start.** kil authorized `cws-listing.mjs launch` on 2026-10-12 and set it to allow. I sent a command to paste instead, and my first message announcing it had lost the command itself.
+
+## Journal: 3.2.0, 2026-10-12
+
+kil counted more than four passes over the 42 Chrome languages in one day. Each one was a defect of the tool or of the order, not bad luck:
+
+1. **Pasting into a draft in review** (0/42), then **the picker typing into the previous language** (he got Hindi, it got Japanese), then **the picker missing a language at random** (bn, es), then **the last save cut off by closing at once** (vi, zh-TW, zh kept the old text while `paste` said 42/42). Fixed in `cws-listing.mjs`: refuses a draft in review, waits for the picker to show the language, retries the pick three times, waits 5 s after the last save. Proof after the fix: one `paste` then one `verify`, 42/42 and 42/42, no rerun. **One paste, one verify. If verify is not 42/42, fix the script before a second paste.**
+2. **A new version for a new build, always.** Asked to replace the 3.1.0 in review with the updated build, the version became 3.2.0: AMO already held 3.1.0 and `v3.1.0` pointed at the old code. Order that worked: `cws.mjs cancel`, `launch`, `paste`, `verify`, PR merged, then the tag.
+3. **Every listing claim follows the code.** All 70 descriptions said "interface in 10 languages" after the interface went to 43; caught only while preparing the release. When a feature changes a fact the listing states, grep `store/` for it in the same PR.
+4. **`git merge origin/master` without `git fetch`** merged a stale ref and left out the PR it was meant to bring. Fetch first.
+5. **`npm run release:check` stops at lint** on a local, untracked `.claude/hillclimb/*.ts`; CI never sees it. Run typecheck, `eslint --ignore-pattern ".claude/**"`, vitest and build one by one rather than reading the chain's first error as a failure of the change.
+6. **Translation at scale (43 languages, 84 catalogues).** Sonnet agents, three languages each, one brief file plus a checker script in the scratchpad (`check-ui.mjs`, `check-chat.mjs`: exact keys, placeholders, no dash, not left in English). What went wrong: a session limit killed half of them mid-file (state on disk read back with the checkers, the rest relaunched); agents overwrote each other's helper scripts in the shared scratchpad (now: helpers named with their language codes); German shipped the chip as "Local" because its agent died before aligning it (the coverage test's English-identical list caught it).
+7. **AMO "33/34", the fa summary.** AMO drops Persian's zero-width non-joiner from the summary too, not only from the description; the listing was stored. Both readbacks (`amo.mjs`, `verify.mjs`) now set ZWNJ aside in the summary. A red AMO step with `POST .../versions/ -> 201` and one locale "differentes" is this class: compare that locale with the API before rerunning anything.
+8. **Submission checked on the dashboard, not assumed.** `cws-listing.mjs status` reads the "État" tab and the submit button. On 3.2.0, pasting before the tag and letting the workflow publish gave "en attente d'examen" with the button greyed out: no click needed.

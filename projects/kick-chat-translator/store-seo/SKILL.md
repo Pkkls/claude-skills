@@ -22,8 +22,8 @@ stores show comes from this repository, so every change is a diff that can be re
 | Screenshots | Chrome | `test/e2e/store-fixture/<lang>/01..05.png` | 1280x800 | kil uploads them in the dashboard, per language |
 | Target queries | both | `store/keywords.json` | | read by `rank.mjs` |
 
-The listing languages are `en fr es pt-BR tr ru ar ja ko zh cs`. The `_locales` directories are spelled
-the Chrome way: `pt_BR` and `zh_CN`. Chrome ignores a bare `pt` or `zh`, and `locales.test.ts` enforces
+The listing languages, 42 since 2026-10-12, are the keys of `scripts/stores/languages.mjs`, with their
+`_locales` directory and AMO locales. The directories are spelled the Chrome way: `pt_BR`, `zh_CN`, `zh_TW`, `pt_PT`. Chrome ignores a bare `pt` or `zh`, and `locales.test.ts` enforces
 this. AMO has no Arabic locale. `store/README.md` has the text rules: no em or en dash, accents in every
 paragraph of 120+ characters, no version number in a description, and the tone of each language.
 
@@ -90,7 +90,7 @@ the score with its denominator:
 5. The screenshots are in that language: the chat translated into it, the interface in it (English for
    Czech, which the interface does not speak yet), and the reply typed in it.
 
-The total is out of 55 (11 languages x 5). A full score means the fields are complete and in place. It
+The total is out of 210 (42 languages x 5). A full score means the fields are complete and in place. It
 says nothing about whether the copy is good or whether the listing will rank, so read the text yourself
 too, and treat any gain as a hypothesis until `rank.mjs` shows it.
 
@@ -98,7 +98,7 @@ Report with this template:
 
 ```
 ### Store SEO audit, <date>
-Score: <n>/55   (Chrome users <n>, AMO daily users <n>)
+Score: <n>/210   (Chrome users <n>, AMO daily users <n>)
 
 Quick wins:
 1. <field> <lang>: "<current>" -> "<new>" (<chars>/<limit>), <why: which query, what evidence>
