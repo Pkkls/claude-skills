@@ -4,7 +4,7 @@ Les skills Claude Code écrits avec kil, au même endroit. Les skills tiers (cla
 
 | Dossier | Contenu | Va dans |
 |---|---|---|
-| `skills/` | youtube-upload (YouTube + fiche Chrome, scripts CDP), promo-video (vidéo produit Remotion), site-relearn, x-space, malware-analysis, soc-analyst, autonomy-log, learn-from-errors, renvois publish-stores et vodloop-ops | `~/.claude/skills/` |
+| `skills/` | youtube-upload (YouTube + fiche Chrome, scripts CDP), promo-video (vidéo produit Remotion), site-relearn, x-space, malware-analysis, soc-analyst, autonomy-log, learn-from-errors, courses-en-ligne (courses Carrefour et Super U par l'API des sites, promos, cagnotte, recettes), renvois publish-stores et vodloop-ops | `~/.claude/skills/` |
 | `projects/kick-chat-translator/` | add-language, publish-stores, store-seo | `<repo>/.claude/skills/` |
 | `projects/vodloop/` | vodloop-ops, vodloop-repeats | `<repo>/.claude/skills/` |
 | `commands/` | les commandes `/` (status, logs, deploy-nano...) | `~/.claude/commands/` |
