@@ -55,6 +55,7 @@ Magasin : Super U <ville> (`/drive-superu-<ville>`), livraison Shopopop, offerte
 - Retirer : sur `/panier`, bouton `aria-label="Retirer une quantité de <nom>"`. Le DOM se re-rend après chaque clic : refaire `find` avant chaque retrait. « Supprimer le produit » par ref ne fait rien ; un clic par ref sur « − » marche parfois. Méthode fiable : `scroll_to`, attendre 2 s (la page se recale d'environ 40 px une fois hydratée, le lien « Ce produit est idéal avec » apparaît), capture, clic aux coordonnées du « − ». Vérifier par rechargement de `/panier`, pas par l'état de la page (une ligne à 0 garde son bouton jusqu'au rechargement).
 - Panier : `/panier` (total estimé, « Plus que X € pour la livraison offerte », « Je cagnotte X € Carte U »). Vider : bouton « Vider le panier » + « confirmer ».
 - Modale « Tic tac.. Votre choix de créneau arrive à terme » : cliquer « Renouveler mon créneau » (garde le choix de kil).
+- **Offres fidélité personnalisées** : `/espace-client?ec-page=fidelite&ec-section=offres` (connecté). À chaque commande, les activer toutes (gratuit, ne paie que si acheté) : boutons « Activer l'offre » cliqués un par un en JS avec ~900 ms de pause, puis vérifier « Activée(s) : N ». 44 offres le 2026-10-14 (jusqu'à 28,30 €), surtout des marques : ne les ajouter au panier que si le produit sert vraiment et que prix moins offre reste bon.
 - Codes promo : lire `/conditions-generales-offres.html` ; les codes y sont souvent réservés à un magasin précis (AUTOMNE15 = Vertou seulement).
 
 ## Comparer deux enseignes
