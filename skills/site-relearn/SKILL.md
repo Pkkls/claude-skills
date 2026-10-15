@@ -1,6 +1,6 @@
 ---
 name: site-relearn
-description: Re-learn a website that a browser bot or scraper automates, after the site changed - crawl every page and tab, diff against the last crawl, audit every selector and UI text the bot's code depends on, reason about what changed (new features, renamed buttons, moved pages, filtered default views), then adapt the bot safely and verify it on its logs. Use whenever a Playwright/Puppeteer/Selenium bot, scraper or automation "stopped working", "farms less", "got slower", "missed something", or the user says the site "changed", "a été mis à jour", has "new features", asks to "rescanner le site", "réapprendre le site", "mettre le bot à jour", or wants the bot to discover and use new site features on its own - even if they never say crawl or selector.
+description: 'Re-learn a site a Playwright/Puppeteer/Selenium bot or scraper automates after it changed: crawl, diff, audit the selectors and UI texts the bot uses, adapt and verify on logs. Use when a bot stopped working, farms less, got slower, or kil says the site changed, "a été mis à jour", "rescanner/réapprendre le site", "mettre le bot à jour".'
 ---
 
 # Site relearn

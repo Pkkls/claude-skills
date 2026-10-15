@@ -1,6 +1,6 @@
 ---
 name: courses-en-ligne
-description: Faire les courses en ligne de kil de bout en bout (Carrefour, Super U / Courses U, comparaison Leclerc, Auchan, Picard) - trouver qui livre, partir des promos et de toutes les catégories, remplir le panier par l'API du site, viser la livraison offerte, puis produire une page de recettes adaptée à son matériel. Use whenever kil asks to "commander mes courses", "fais mes courses", "refais le panier", "cherche des promos", "code promo", "c'est quel le moins cher", "qui livre", "recettes avec le panier", or mentions Carrefour, Super U, Courses U, drive, livraison de courses, même sans dire "skill".
+description: 'Faire les courses en ligne de kil (Carrefour, Courses U, comparaison Leclerc/Auchan/Picard) : qui livre, promos, panier par l''API, livraison offerte, page de recettes. Use when kil says "fais/commande mes courses", "refais le panier", "promos", "code promo", "le moins cher", "qui livre", or mentions Carrefour, Super U, drive.'
 ---
 
 # Courses en ligne

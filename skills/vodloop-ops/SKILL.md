@@ -1,6 +1,6 @@
 ---
 name: vodloop-ops
-description: Run the vodloop 24/7 Kick rebroadcast end to end - health check in one command, diagnose airing and diversity, change and deploy the Oracle v2 code, test chat commands against the state and in the live Kick chat, manage channel rewards and the About panels through the Chrome MCP, place Kick VODs by their frames, act on the board's SD card and on the PC filler (remplisseur). Use whenever the user mentions vodloop, nanatty247, the 24/7 channel, its chat bot or commands (!stay, !skip, !schedule...), its rewards or panels, the board/hangar/SD, the remplisseur, Oracle, or says the channel loops, lacks variety, runs dry, or a command does nothing.
+description: 'Run the vodloop 24/7 Kick rebroadcast: health check, airing and diversity, Oracle v2 deploy, chat commands (!stay, !skip, !schedule), rewards and About panels via Chrome MCP, board/hangar/SD, PC remplisseur. Use whenever kil mentions vodloop, cx247vods, nanatty247, Oracle, the 24/7 channel, or says it loops, runs dry or a command does nothing.'
 ---
 
 # vodloop-ops (pointer)

@@ -1,6 +1,6 @@
 ---
 name: flow-video
-description: Générer des plans vidéo IA gratuitement dans Google Flow (Veo 3.1) par le MCP Claude in Chrome, depuis un fichier de plans shots.json, les télécharger et les ranger, jour après jour jusqu'à ce que tout soit fait. À utiliser quand kil demande de « générer les plans », « continuer les vidéos Flow », « faire les clips IA », relancer l'épisode kil & Claude, ou toute génération vidéo gratuite (Veo, Flow), même sans dire « skill ».
+description: 'Générer des plans vidéo IA gratuits dans Google Flow (Veo 3.1) via Claude in Chrome depuis shots.json, les télécharger et ranger, jour après jour. Use when kil says « générer les plans », « continuer les vidéos Flow », « clips IA », épisode kil & Claude, Veo ou Flow.'
 ---
 
 # Flow video
