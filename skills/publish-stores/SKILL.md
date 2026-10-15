@@ -1,6 +1,6 @@
 ---
 name: publish-stores
-description: Publish kick-chat-translator to the Chrome Web Store and addons.mozilla.org, from any working directory. Use when the user asks to release, upload, publish, tag or ship the extension, or to check or change its store listings.
+description: Publish kick-chat-translator to the Chrome Web Store and addons.mozilla.org, from any working directory. Use when the user asks to release, upload, publish, tag or ship the extension, or to check or change its store listings, or to promote it on kil's Kick account StormRock (About panels, channel banner).
 ---
 
 # publish-stores (pointer)

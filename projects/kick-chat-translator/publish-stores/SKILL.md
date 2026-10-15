@@ -1,6 +1,6 @@
 ---
 name: publish-stores
-description: Ship a release to the Chrome Web Store and addons.mozilla.org. A tag vX.Y.Z runs the Release workflow, which builds, checks and publishes through both stores' APIs; store texts live in store/. `npm run stores:preflight` says before the tag what the Chrome dashboard needs by hand (a new permission's justification, changed descriptions) and writes a copy page for it. Covers the versioning rule, the manual dashboard steps, checking what the stores serve, and recovering a store that failed. Use when the user asks to release, upload, publish or ship a version, or to change or check the store listings.
+description: Ship a release to the Chrome Web Store and addons.mozilla.org. A tag vX.Y.Z runs the Release workflow, which builds, checks and publishes through both stores' APIs; store texts live in store/. `npm run stores:preflight` says before the tag what the Chrome dashboard needs by hand (a new permission's justification, changed descriptions) and writes a copy page for it. Covers the versioning rule, the manual dashboard steps, checking what the stores serve, and recovering a store that failed. Use when the user asks to release, upload, publish or ship a version, or to change or check the store listings. Also covers the extension's promo on kil's Kick account StormRock (About panels and channel banner, sources in store/kick/).
 ---
 
 # Publishing to the stores
@@ -158,6 +158,18 @@ const a = await fetch('https://addons.mozilla.org/api/v5/addons/addon/kick-chat-
 ```
 
 Compare as booleans: the tool output masks version strings as tokens. Then open `https://addons.mozilla.org/fr/firefox/addon/kick-chat-translator/` and read the summary and the start of the description.
+
+## 5. Kick: promo panels and banner on StormRock
+
+kil's Kick account **StormRock** advertises the extension on its own channel: 8 About panels (EN, ES, PT, FR, JA, TR, RU, AR, in that order; German was dropped on purpose) and the channel banner. Only on StormRock's own page: never promo messages in other streamers' chats (spam for them, ban risk for the account that farms the drops).
+
+- **Sources** in `store/kick/`: `panels.html` (copy of every language in one `P` object, the 3 chat lines in `LINES`), `banner.html`. Render with `python render.py` (each panel must print OK, max 2x width) and `python render_banner.py` (2400x400 plus `banner-crop-wide.png` / `banner-crop-narrow.png`, what Kick's cover crop shows). Look at every PNG, then show kil the contact sheet **before** any upload.
+- **Flags and emoji**: Chrome on Windows draws flag emoji as two letters. They are Twemoji SVGs from jsdelivr (`tw()`), whole, never cropped into circles (the crop made France white). Bind the emoji to the word before it (`emo()` wraps both in a nowrap span; a no-break space alone still lets the image wrap). Arabic text gets `dir="rtl"` explicitly: `dir="auto"` reads the leading "GG" as LTR and puts it on the wrong side.
+- **Banner safe band**: Kick shows the banner `object-fit: cover`, about 11.5:1 on a wide screen, centred. Everything that must be read stays in the middle 52..148 px of the 200 px design; the "StormRock is offline" badge covers about the left quarter, so only decorative chips go there.
+- **Check the account first**: in a kick.com page, `(await fetch('/api/v1/user').then(r=>r.json())).username` must be `StormRock`.
+- **Panels**: `kick.com/stormrock/about`, "Edit Panel" (if its ref does not open the editor, click it from a screenshot). `find` gives the file inputs and the Update buttons of the 8 cards in order; `file_upload` the PNG, click that card's Update, wait 4 s. A new panel: the "+" (Add) button, then "Create". Panel fields: title `Kick Chat Translator (<language>)`, image link = the Chrome store URL, description = one sentence in the language plus the Chrome and Firefox links.
+- **Banner**: `kick.com/settings/profile`, Channel Banner "Update Banner image" opens a modal; its file input only exists once the modal is open (`find` it there), then "Apply" on the crop, then "Save".
+- **Verify** through the API, not the screen: `GET /api/v2/channels/stormrock/links` (order, title, `image.url` changed against a copy taken before) and `GET /api/v2/channels/stormrock` (`banner_image.url`), then look at the public page.
 
 ## Journal: 2.12.0 to 2.12.2, 2026-09-26
 
