@@ -17,7 +17,7 @@ Méthode rodée le 2026-10-13/14 sur 6 paniers refaits avant validation. Les go�
 
 ## Ordre de travail
 
-1. **Mémoire** `courses-carrefour` : goûts, produits retirés à ne plus proposer, matériel (air fryer, autocuiseur, induction + wok), seuils.
+1. **Mémoire** `courses-carrefour` : goûts, produits retirés à ne plus proposer, matériel (air fryer, multicuiseur Russell Hobbs 21850-56 sans pression, induction + wok), seuils.
 2. **Qui livre** (si la question se pose) : tester l'éligibilité sur chaque site avec le code postal du profil. <ville> <code-postal> au 2026-10-14 : Carrefour oui, Super U oui (Shopopop), Auchan oui (collaboratif, 50 € min), Picard oui (6 €, offert dès 100 €), Leclerc non (drive <commune-voisine-1> seulement), Intermarché bloqué par anti-robot, Monoprix carte de vérif qui ne charge pas.
 3. **Partir des promos, pas des produits.** Récupérer la liste complète des promos du magasin, puis toutes les rubriques spéciales (voir par site). Chercher un produit puis regarder s'il est en promo a été rejeté (« tu ne profites pas des promotions »).
 4. **Maximiser les catégories** : tous les rayons alimentaires (y compris petit-déj, sucré, pain, boissons, bière), hygiène, entretien. Écarter bébé, animalerie, maison, électroménager, high-tech, textile.
